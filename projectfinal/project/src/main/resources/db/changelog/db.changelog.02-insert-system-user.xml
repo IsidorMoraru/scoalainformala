@@ -1,0 +1,22 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+    <changeSet id="02-insert-system-user" author="moraru.isidor">
+        <sql>
+            insert into "users" (email, password, first_name, last_name,
+            phone, address, date_of_birth, role, status)
+            values ('user.system@informalschool.com', '', 'User', 'System', '-', 'Neptun',
+            '2023-04-05', 'SYSTEM', 'ACTIVE');
+
+        </sql>
+        <rollback>
+            <sql>
+                delete from "users" where "role" = 'SYSTEM';
+            </sql>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Your HTML head content here -->
+</head>
+<body>
+<h1>Registration Result</h1>
+<span th:if="${registrationSuccess}">
+        <p>Registration was successful!</p>
+    </span>
+<span th:unless="${registrationSuccess}">
+        <p>Registration failed.</p>
+    </span>
+</body>
+</html>

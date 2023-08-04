@@ -1,0 +1,26 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+    <changeSet id="06-create-table-movies" author="moraru.isidor">
+
+        <sql>
+            CREATE TABLE IF NOT EXISTS movies (
+            id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+            title VARCHAR(255) NOT NULL,
+            director VARCHAR(255) NOT NULL,
+            release_year INTEGER,
+            genre character varying(100) not null
+
+            );
+        </sql>
+        <rollback>
+            <sql>
+                drop table if exists movies;
+            </sql>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

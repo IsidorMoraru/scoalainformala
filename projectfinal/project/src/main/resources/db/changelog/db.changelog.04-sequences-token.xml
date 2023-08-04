@@ -1,0 +1,20 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+    <changeSet id="03-sequences-token" author="moraru.isidor">
+        <sql>
+            create sequence if not exists "token_seq" start 1;
+            alter table "tokens" alter column "id" set default nextval('token_seq');
+        </sql>
+        <rollback>
+            <sql>
+                alter table "tokens" alter column "id" drop default;
+                drop sequence if exists "token_seq";
+            </sql>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

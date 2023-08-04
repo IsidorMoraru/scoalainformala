@@ -1,0 +1,28 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+    <changeSet id="03-isert-table-token-security" author="moraru.isidor">
+        <sql>
+            create table if not exists tokens (
+            id serial primary key,
+            token varchar(255) unique not null,
+            tokentype varchar(10) not null,
+            revoked boolean not null default false,
+            expired boolean not null default false,
+            user_id uuid not null,
+            constraint fk_user
+            foreign key (user_id)
+            references users(id)
+            );
+        </sql>
+        <rollback>
+            <sql>
+                drop table if exists tokens;
+            </sql>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
